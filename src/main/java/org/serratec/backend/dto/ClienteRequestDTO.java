@@ -11,6 +11,7 @@ public class ClienteRequestDTO {
 	@NotBlank(message = "O nome do cliente não pode ser nulo ou vazio!")
 	private String nome;
 
+	@Size(min = 11, max = 11, message = "O telefone deve ter 11 caracteres, Ex: (XX)XXXXX-XXXX")
 	@NotBlank(message = "O telefone do cliente não pode ser nulo ou vazio!")
 	private String telefone;
 

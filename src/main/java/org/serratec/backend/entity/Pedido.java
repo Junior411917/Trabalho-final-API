@@ -2,18 +2,13 @@ package org.serratec.backend.entity;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import org.serratec.backend.enums.EstadoDoPedido;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Pedido {
@@ -34,6 +29,10 @@ public class Pedido {
 	@ManyToOne
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
+
+	@JsonManagedReference
+	@OneToMany(mappedBy = "id.pedido")
+	private List<PedidoProduto> pedidosProdutos = new ArrayList<>();
 
 	public Integer getQuantidade() {
 		return quantidade;

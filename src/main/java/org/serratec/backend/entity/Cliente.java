@@ -1,6 +1,8 @@
 package org.serratec.backend.entity;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -26,6 +28,10 @@ public class Cliente {
 	@JsonManagedReference
 	@OneToMany(mappedBy = "cliente")
 	private List<Pedido> pedidos;
+
+	@JsonManagedReference("pk_cliente")
+	@OneToMany(mappedBy = "id.cliente")
+	private Set<ClientePerfil> clientePerfis = new HashSet<>();
 
 	public Long getId() {
 		return id;
