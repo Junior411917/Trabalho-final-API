@@ -6,11 +6,7 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 
 @Entity
 public class Cliente {
@@ -23,15 +19,17 @@ public class Cliente {
 	private String email;
 	private String senha;
 	private String cpf;
-	private String cep;
-	
+
 	@JsonManagedReference
 	@OneToMany(mappedBy = "cliente")
 	private List<Pedido> pedidos;
 
-	@JsonManagedReference("pk_cliente")
-	@OneToMany(mappedBy = "id.cliente")
+	@OneToMany(mappedBy = "id.cliente", cascade = CascadeType.ALL)
 	private Set<ClientePerfil> clientePerfis = new HashSet<>();
+
+	@ManyToOne
+	@JoinColumn(name = "id_endereco")
+	private Endereco endereco;
 
 	public Long getId() {
 		return id;
@@ -81,12 +79,20 @@ public class Cliente {
 		this.cpf = cpf;
 	}
 
-	public String getCep() {
-		return cep;
+	public Set<ClientePerfil> getClientePerfis() {
+		return clientePerfis;
 	}
 
-	public void setCep(String cep) {
-		this.cep = cep;
+	public void setClientePerfis(Set<ClientePerfil> clientePerfis) {
+		this.clientePerfis = clientePerfis;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 	public List<Pedido> getPedidos() {

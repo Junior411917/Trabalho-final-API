@@ -1,6 +1,7 @@
 package org.serratec.backend.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -13,7 +14,6 @@ public class Perfil {
     private Long id;
     private String nome;
 
-    @JsonBackReference("pk_perfil")
     @OneToMany(mappedBy = "id.perfil")
     private Set<ClientePerfil> clientesPerfis = new HashSet<>();
 

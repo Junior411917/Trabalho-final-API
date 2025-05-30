@@ -11,7 +11,6 @@ import jakarta.persistence.ManyToOne;
 
 @Embeddable
 public class PedidoProdutoPK {
-	
 	@ManyToOne
 	@JoinColumn(name = "id_produto")
 	private Produto produto;

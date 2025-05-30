@@ -19,7 +19,6 @@ public class Produto {
 	@Enumerated(EnumType.STRING)
 	private Categoria categoria;
 
-	@JsonManagedReference
 	@OneToMany(mappedBy = "id.produto")
 	private List<PedidoProduto> pedidosProdutos = new ArrayList<>();
 
