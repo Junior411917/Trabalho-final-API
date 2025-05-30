@@ -3,6 +3,7 @@ package org.serratec.backend.entity;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.serratec.backend.enums.EstadoDoPedido;
 
 import jakarta.persistence.Entity;
@@ -16,7 +17,6 @@ import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Pedido {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -30,11 +30,11 @@ public class Pedido {
 	@Enumerated(EnumType.STRING)
 	private EstadoDoPedido status;
 
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
-	
-	
+
 	public Integer getQuantidade() {
 		return quantidade;
 	}
@@ -98,5 +98,4 @@ public class Pedido {
 	public void setStatus(EstadoDoPedido status) {
 		this.status = status;
 	}
-
 }

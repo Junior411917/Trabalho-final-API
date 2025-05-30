@@ -1,8 +1,12 @@
 package org.serratec.backend.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import org.serratec.backend.entity.Endereco;
 
 public class EnderecoRequestDTO {
+	@NotBlank(message = "O CEP é obrigatório.")
+	@Pattern(regexp = "\\d{8}", message = "CEP inválido. Deve conter exatamente 8 dígitos numéricos.")
 	private String cep;
 	private String logradouro;
 	private String bairro;
@@ -10,10 +14,7 @@ public class EnderecoRequestDTO {
 	private String uf;
 	
 	public EnderecoRequestDTO() {
-		
 	}
-	
-	
 
 	public EnderecoRequestDTO(Endereco endereco) {
 		this.cep = endereco.getCep();
@@ -22,8 +23,6 @@ public class EnderecoRequestDTO {
 		this.localidade = endereco.getLocalidade();
 		this.uf = endereco.getUf();
 	}
-
-
 
 	public String getCep() {
 		return cep;
@@ -64,6 +63,4 @@ public class EnderecoRequestDTO {
 	public void setUf(String uf) {
 		this.uf = uf;
 	}
-	
-	
 }

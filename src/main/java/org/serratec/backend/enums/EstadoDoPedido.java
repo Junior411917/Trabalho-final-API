@@ -1,6 +1,6 @@
 package org.serratec.backend.enums;
 
-import org.serratec.backend.exception.EnunException;
+import org.serratec.backend.exception.EnumException;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
@@ -14,6 +14,6 @@ public enum EstadoDoPedido {
 				return estado;
 			}
 		}
-		throw new EnunException("Estado do pedido inválido");
+		throw new EnumException("Estado do pedido inválido");
 	}
 }

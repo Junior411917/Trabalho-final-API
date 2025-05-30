@@ -1,5 +1,6 @@
 package org.serratec.backend.dto;
 
+import jakarta.validation.constraints.Size;
 import org.hibernate.validator.constraints.br.CPF;
 import org.serratec.backend.entity.Cliente;
 
@@ -7,29 +8,33 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 public class ClienteRequestDTO {
-//Validação dos atributos de cliente	
-	@NotBlank
+	@NotBlank(message = "O nome do cliente não pode ser nulo ou vazio!")
 	private String nome;
 
-	@NotBlank
+	@NotBlank(message = "O telefone do cliente não pode ser nulo ou vazio!")
 	private String telefone;
 
-	@Email
+	@NotBlank(message = "O email do cliente não pode ser nulo ou vazio!")
+	@Email(message = "A formatação do email é invalida!")
 	private String email;
 
-	@CPF
+	@NotBlank(message = "O CPF do cliente não pode ser nulo ou vazio!")
+	@Size(min = 11, max = 11, message = "O CPF deve ter 11 caracteres!")
+	@CPF(message = "A formatação do CPF é invalida!")
 	private String cpf;
 
-	public ClienteRequestDTO() {
+	@NotBlank(message = "O CEP do cliente não pode ser nulo ou vazio!")
+	private String cep;
 
+	public ClienteRequestDTO() {
 	}
 
 	public ClienteRequestDTO(Cliente cliente) {
-
 		this.nome = cliente.getNome();
 		this.telefone = cliente.getTelefone();
 		this.email = cliente.getEmail();
 		this.cpf = cliente.getCpf();
+		this.cep = cliente.getCep();
 	}
 
 	public String getNome() {
@@ -63,5 +68,4 @@ public class ClienteRequestDTO {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-
 }
