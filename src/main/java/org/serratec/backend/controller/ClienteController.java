@@ -11,6 +11,7 @@ import org.serratec.backend.dto.ClienteResponseDTO;
 import org.serratec.backend.entity.Cliente;
 import org.serratec.backend.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -58,7 +59,7 @@ public class ClienteController {
     )
     @PostMapping
     public ResponseEntity<ClienteResponseDTO> save(@Valid @RequestBody ClienteRequestDTO cliente){
-        return ResponseEntity.ok().body(service.save(cliente));
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.save(cliente));
     }
 
     @Operation(summary = "Atualiza um cliente existente", description = "Através da requisição e os dados passados por ela, dados de um cliente existente são atualizados")

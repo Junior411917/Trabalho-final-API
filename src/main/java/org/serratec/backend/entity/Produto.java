@@ -61,4 +61,12 @@ public class Produto {
 	public void setPrecoProduto(Double precoProduto) {
 		this.precoProduto = precoProduto;
 	}
+
+	public List<PedidoProduto> getPedidosProdutos() {
+		return pedidosProdutos;
+	}
+
+	public void setPedidosProdutos(List<PedidoProduto> pedidosProdutos) {
+		this.pedidosProdutos = pedidosProdutos;
+	}
 }
