@@ -28,8 +28,6 @@ public class Produto {
 	@OneToMany(mappedBy = "id.produto")
 	private List<PedidoProduto> pedidosProdutos = new ArrayList<>();
 
-	
-	
 	@Override
 	public String toString() {
 		return "Produto [id=" + id + ", nomeProduto=" + nomeProduto + ", descricaoProduto=" + descricaoProduto
