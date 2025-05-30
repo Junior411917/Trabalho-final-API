@@ -3,10 +3,17 @@ package org.serratec.backend.dto;
 import org.serratec.backend.entity.Produto;
 import org.serratec.backend.enums.Categoria;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public class ProdutoRequestDTO {
+	@NotBlank(message = "O nome do produto não pode ser nulo ou vazio!")
     private String nomeProduto;
+	@NotBlank(message = "A descrição do produto não pode ser nulo ou vazio!")
     private String descricaoProduto;
+	@NotNull(message = "O preço não pode ser nulo!")
     private Double precoProduto;
+	@NotNull(message = "A categoria não pode ser nula!")
     private Categoria categoria;
 
     public ProdutoRequestDTO() {
@@ -50,4 +57,6 @@ public class ProdutoRequestDTO {
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
+    
+    
 }

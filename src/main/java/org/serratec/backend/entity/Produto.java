@@ -1,11 +1,17 @@
 package org.serratec.backend.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import jakarta.persistence.*;
-import org.serratec.backend.enums.Categoria;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import org.serratec.backend.enums.Categoria;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Produto {
@@ -21,6 +27,15 @@ public class Produto {
 
 	@OneToMany(mappedBy = "id.produto")
 	private List<PedidoProduto> pedidosProdutos = new ArrayList<>();
+
+	
+	
+	@Override
+	public String toString() {
+		return "Produto [id=" + id + ", nomeProduto=" + nomeProduto + ", descricaoProduto=" + descricaoProduto
+				+ ", precoProduto=" + precoProduto + ", categoria=" + categoria + ", pedidosProdutos=" + pedidosProdutos
+				+ "]";
+	}
 
 	public Categoria getCategoria() {
 		return categoria;
