@@ -84,6 +84,4 @@ public class Produto {
 	public void setPedidosProdutos(List<PedidoProduto> pedidosProdutos) {
 		this.pedidosProdutos = pedidosProdutos;
 	}
-	
-	
 }

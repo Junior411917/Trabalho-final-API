@@ -30,7 +30,6 @@ public class Pedido {
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
 
-	@JsonManagedReference
 	@OneToMany(mappedBy = "id.pedido")
 	private List<PedidoProduto> pedidosProdutos = new ArrayList<>();
 
