@@ -45,7 +45,7 @@ public class PerfilController {
             @ApiResponse(responseCode = "505", description = "Exceção interna da aplicação") }
     )
     @GetMapping("/{id}")
-    public ResponseEntity<PerfilResponseDTO> findById(@PathVariable Long id){
+    public ResponseEntity<Perfil> findById(@PathVariable Long id){
         return ResponseEntity.ok().body(service.findById(id));
     }
 }

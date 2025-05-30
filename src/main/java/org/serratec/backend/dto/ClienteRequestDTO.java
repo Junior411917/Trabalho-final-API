@@ -6,6 +6,10 @@ import org.serratec.backend.entity.Cliente;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import org.serratec.backend.entity.ClientePerfil;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class ClienteRequestDTO {
 	@NotBlank(message = "O nome do cliente não pode ser nulo ou vazio!")
@@ -19,6 +23,10 @@ public class ClienteRequestDTO {
 	@Email(message = "A formatação do email é invalida!")
 	private String email;
 
+	@Size(min = 8, message = "A senha deve ter no minimo 8 caracteres!")
+	@NotBlank(message = "A senha do cliente não pode ser nula ou vazia!")
+	private String senha;
+
 	@NotBlank(message = "O CPF do cliente não pode ser nulo ou vazio!")
 	@Size(min = 11, max = 11, message = "O CPF deve ter 11 caracteres!")
 	@CPF(message = "A formatação do CPF é invalida!")
@@ -26,6 +34,8 @@ public class ClienteRequestDTO {
 
 	@NotBlank(message = "O CEP do cliente não pode ser nulo ou vazio!")
 	private String cep;
+
+	private Set<ClientePerfil> clientePerfis = new HashSet<>();
 
 	public ClienteRequestDTO() {
 	}
@@ -35,7 +45,7 @@ public class ClienteRequestDTO {
 		this.telefone = cliente.getTelefone();
 		this.email = cliente.getEmail();
 		this.cpf = cliente.getCpf();
-		this.cep = cliente.getCep();
+		this.cep = cliente.getEndereco().getCep();
 	}
 
 	public String getNome() {
@@ -62,11 +72,35 @@ public class ClienteRequestDTO {
 		this.email = email;
 	}
 
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
 	public String getCpf() {
 		return cpf;
 	}
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public Set<ClientePerfil> getClientePerfis() {
+		return clientePerfis;
+	}
+
+	public void setClientePerfis(Set<ClientePerfil> clientePerfis) {
+		this.clientePerfis = clientePerfis;
 	}
 }
