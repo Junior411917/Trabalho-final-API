@@ -12,11 +12,8 @@ public class Endereco {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@NotBlank(message = "O CEP é obrigatório.")
-    @Pattern(regexp = "\\d{8}", message = "CEP inválido. Deve conter exatamente 8 dígitos numéricos.")
+
 	private String cep;
-	
 	private String logradouro;
 	private String bairro;
 	private String localidade;

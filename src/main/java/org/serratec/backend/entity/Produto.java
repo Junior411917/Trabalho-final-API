@@ -1,7 +1,5 @@
 package org.serratec.backend.entity;
 
-import java.time.LocalDateTime;
-
 import org.serratec.backend.enums.Categoria;
 
 import jakarta.persistence.Entity;
@@ -19,7 +17,6 @@ public class Produto {
 	private String nomeProduto;
 	private String descricaoProduto;
 	private Double precoProduto;
-	private LocalDateTime envioDoProduto;
 
 	@Enumerated(EnumType.STRING)
 	private Categoria categoria;
@@ -63,13 +60,4 @@ public class Produto {
 	public void setPrecoProduto(Double precoProduto) {
 		this.precoProduto = precoProduto;
 	}
-
-	public LocalDateTime getEnvioDoProduto() {
-		return envioDoProduto;
-	}
-
-	public void setEnvioDoProduto(LocalDateTime envioDoProduto) {
-		this.envioDoProduto = envioDoProduto;
-	}
-
 }

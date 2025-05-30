@@ -17,24 +17,15 @@ public class Cliente {
 	private Long id;
 
 	private String nome;
-
 	private String telefone;
-
 	private String email;
-
+	private String senha;
 	private String cpf;
+	private String cep;
 	
-	@OneToMany(mappedBy = "cliente")
 	@JsonManagedReference
+	@OneToMany(mappedBy = "cliente")
 	private List<Pedido> pedidos;
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
 
 	public Long getId() {
 		return id;
@@ -42,6 +33,14 @@ public class Cliente {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getTelefone() {
@@ -60,6 +59,14 @@ public class Cliente {
 		this.email = email;
 	}
 
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
+	}
+
 	public String getCpf() {
 		return cpf;
 	}
@@ -68,4 +75,19 @@ public class Cliente {
 		this.cpf = cpf;
 	}
 
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
 }

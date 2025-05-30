@@ -1,8 +1,6 @@
 package org.serratec.backend.enums;
 
-
-
-import org.serratec.backend.exception.EnunException;
+import org.serratec.backend.exception.EnumException;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
@@ -16,6 +14,6 @@ MEDICAMENTOS, SUPLEMENTOS, INFANTIL, DERMOCOSMETICOS, SOCORROS;
 				return categoria;
 			}
 		}
-		throw new EnunException("Categoria farmacêutica inválida");
+		throw new EnumException("Categoria farmacêutica inválida");
 	}
 }
