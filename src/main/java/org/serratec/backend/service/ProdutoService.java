@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import org.serratec.backend.dto.ProdutoRequestDTO;
 import org.serratec.backend.dto.ProdutoResponseDTO;
-import org.serratec.backend.entity.Cliente;
 import org.serratec.backend.entity.Produto;
 import org.serratec.backend.exception.ClienteException;
 import org.serratec.backend.exception.ProdutoException;
@@ -28,7 +27,6 @@ public class ProdutoService {
     public ProdutoResponseDTO findById(Long id){
         return repository.findById(id).map(ProdutoResponseDTO::new).orElseThrow(() -> new ProdutoException("ID não encontrado."));
     }
-    
     
     @Transactional
 	public ProdutoResponseDTO inserir(ProdutoRequestDTO produtoDTO) {
