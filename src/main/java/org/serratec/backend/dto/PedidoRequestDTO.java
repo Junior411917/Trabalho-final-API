@@ -12,7 +12,6 @@ import org.serratec.backend.enums.EstadoDoPedido;
 
 import jakarta.validation.constraints.NotNull;
 
-
 public class PedidoRequestDTO {
 	@NotNull(message = "A data do pedido não ser nula!")
 	private LocalDate dataPedido;
