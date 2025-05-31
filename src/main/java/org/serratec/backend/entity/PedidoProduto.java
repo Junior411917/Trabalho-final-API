@@ -18,10 +18,9 @@ public class PedidoProduto {
 	}
 
 	public PedidoProduto(Pedido pedido, Produto produto) {
-		id.setPedido(pedido); 
+		id.setPedido(pedido);
 		id.setProduto(produto);
-		this.desconto = pedido.getDesconto();
-		this.quantidade = pedido.getQuantidade();
+
 		this.venda = produto.getPrecoProduto() * quantidade - desconto;
 	}
 

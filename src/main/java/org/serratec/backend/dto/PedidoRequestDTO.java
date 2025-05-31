@@ -1,101 +1,116 @@
 package org.serratec.backend.dto;
 
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
-import org.serratec.backend.entity.Cliente;
-import org.serratec.backend.entity.Pedido;
-import org.serratec.backend.enums.EstadoDoPedido;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.serratec.backend.entity.Cliente;
+import org.serratec.backend.entity.Pedido;
+import org.serratec.backend.entity.PedidoProduto;
+import org.serratec.backend.enums.EstadoDoPedido;
+
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 public class PedidoRequestDTO {
-    @Size(min = 1, message = "A quantidade minima é 1 (um) item!")
-    @NotNull(message = "A quantidade do pedido não pode ser nula!")
-    private Integer quantidade;
-    private Double desconto;
+	
+	@NotNull(message = "A quantidade do pedido não pode ser nula!")
+	private Integer quantidade;
 
-    @NotNull(message = "A data do pedido não ser nula!")
-    private LocalDate dataPedido;
+	private Double desconto;
 
-    @NotNull(message = "A hora do pedido não ser nula!")
-    private LocalDateTime horaPedido;
+	@NotNull(message = "A data do pedido não ser nula!")
+	private LocalDate dataPedido;
 
-    @NotNull(message = "A data do pedido não ser nula!")
-    private LocalDate dataEntrega;
+	@NotNull(message = "A hora do pedido não ser nula!")
+	private LocalDateTime horaPedido;
 
-    @NotNull(message = "A status do pedido não ser nulo!")
-    private EstadoDoPedido status;
+	
+	private LocalDate dataEntrega;
 
-    @NotNull(message = "O cliente do pedido não ser nulo!")
-    private Cliente cliente;
+	@NotNull(message = "A status do pedido não ser nulo!")
+	private EstadoDoPedido status;
 
-    public PedidoRequestDTO(Pedido pedido) {
-        this.quantidade = pedido.getQuantidade();
-        this.desconto = pedido.getDesconto();
-        this.dataPedido = pedido.getDataPedido();
-        this.horaPedido = pedido.getHoraPedido();
-        this.dataEntrega = pedido.getDataEntrega();
-        this.status = pedido.getStatus();
-        this.cliente = pedido.getCliente();
-    }
+	@NotNull(message = "O cliente do pedido não ser nulo!")
+	private Cliente cliente;
 
-    public PedidoRequestDTO() {
-    }
+	private List<PedidoProduto> pedidosProdutos = new ArrayList<>();
 
-    public Integer getQuantidade() {
-        return quantidade;
-    }
+	public PedidoRequestDTO(Pedido pedido) {
 
-    public void setQuantidade(Integer quantidade) {
-        this.quantidade = quantidade;
-    }
+		this.dataPedido = pedido.getDataPedido();
+		this.horaPedido = pedido.getHoraPedido();
+		this.dataEntrega = pedido.getDataEntrega();
+		this.status = pedido.getStatus();
+		this.cliente = pedido.getCliente();
+	}
 
-    public Double getDesconto() {
-        return desconto;
-    }
+	public PedidoRequestDTO() {
+	}
 
-    public void setDesconto(Double desconto) {
-        this.desconto = desconto;
-    }
+	public Integer getQuantidade() {
+		return quantidade;
+	}
 
-    public LocalDate getDataPedido() {
-        return dataPedido;
-    }
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
+	}
 
-    public void setDataPedido(LocalDate dataPedido) {
-        this.dataPedido = dataPedido;
-    }
+	public Double getDesconto() {
+		return desconto;
+	}
 
-    public LocalDateTime getHoraPedido() {
-        return horaPedido;
-    }
+	public void setDesconto(Double desconto) {
+		this.desconto = desconto;
+	}
 
-    public void setHoraPedido(LocalDateTime horaPedido) {
-        this.horaPedido = horaPedido;
-    }
+	public LocalDate getDataPedido() {
+		return dataPedido;
+	}
 
-    public LocalDate getDataEntrega() {
-        return dataEntrega;
-    }
+	public void setDataPedido(LocalDate dataPedido) {
+		this.dataPedido = dataPedido;
+	}
 
-    public void setDataEntrega(LocalDate dataEntrega) {
-        this.dataEntrega = dataEntrega;
-    }
+	public LocalDateTime getHoraPedido() {
+		return horaPedido;
+	}
 
-    public EstadoDoPedido getStatus() {
-        return status;
-    }
+	public void setHoraPedido(LocalDateTime horaPedido) {
+		this.horaPedido = horaPedido;
+	}
 
-    public void setStatus(EstadoDoPedido status) {
-        this.status = status;
-    }
+	public LocalDate getDataEntrega() {
+		return dataEntrega;
+	}
 
-    public Cliente getCliente() {
-        return cliente;
-    }
+	public void setDataEntrega(LocalDate dataEntrega) {
+		this.dataEntrega = dataEntrega;
+	}
 
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
+	public EstadoDoPedido getStatus() {
+		return status;
+	}
+
+	public void setStatus(EstadoDoPedido status) {
+		this.status = status;
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public List<PedidoProduto> getPedidosProdutos() {
+		return pedidosProdutos;
+	}
+
+	public void setPedidosProdutos(List<PedidoProduto> pedidosProdutos) {
+		this.pedidosProdutos = pedidosProdutos;
+	}
+
 }

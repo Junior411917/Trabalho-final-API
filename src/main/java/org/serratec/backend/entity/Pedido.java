@@ -15,9 +15,7 @@ public class Pedido {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	private Integer quantidade;
-	private Double desconto;
+
 	private LocalDate dataPedido;
 	private LocalDateTime horaPedido;
 	private LocalDate dataEntrega;
@@ -33,28 +31,12 @@ public class Pedido {
 	@OneToMany(mappedBy = "id.pedido")
 	private List<PedidoProduto> pedidosProdutos = new ArrayList<>();
 
-	public Integer getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(Integer quantidade) {
-		this.quantidade = quantidade;
-	}
-
-	public Double getDesconto() {
-		return desconto;
-	}
-
 	public Long getId() {
 		return id;
 	}
 
 	public Cliente getCliente() {
 		return cliente;
-	}
-
-	public void setDesconto(Double desconto) {
-		this.desconto = desconto;
 	}
 
 	public void setCliente(Cliente cliente) {
