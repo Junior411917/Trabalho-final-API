@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import org.serratec.backend.entity.Cliente;
 import org.serratec.backend.entity.Pedido;
 import org.serratec.backend.entity.PedidoProduto;
@@ -12,6 +13,37 @@ import org.serratec.backend.enums.EstadoDoPedido;
 
 import jakarta.validation.constraints.NotNull;
 
+@Schema(name = "PedidoRequestDTO", example = """
+{
+  "dataPedido": "XXXX-XX-XX",
+  "horaPedido": "XXXX-XX-XXTYY:YY:YY",
+  "dataEntrega": "XXXX-XX-XX",
+  "status": "ENTREGUE",
+  "cliente": {
+    "id": "id"
+  },
+  "pedidosProdutos": [
+    {
+      "id": {
+        "produto": {
+          "id": "id"
+        }
+      },
+      "quantidade": "integer",
+      "desconto": "double"
+    },
+    {
+      "id": {
+        "produto": {
+          "id": "id"
+        }
+      },
+      "quantidade": "integer",
+      "desconto": "double"
+    }
+  ]
+}
+""")
 public class PedidoRequestDTO {
 	@NotNull(message = "A data do pedido não ser nula!")
 	private LocalDate dataPedido;

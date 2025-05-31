@@ -1,5 +1,6 @@
 package org.serratec.backend.dto;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Size;
 import org.hibernate.validator.constraints.br.CPF;
 import org.serratec.backend.entity.Cliente;
@@ -11,6 +12,28 @@ import org.serratec.backend.entity.ClientePerfil;
 import java.util.HashSet;
 import java.util.Set;
 
+@Schema(name = "ClienteRequestDTO", example = """
+{
+    "nome": "string",
+    "telefone": "string",
+    "email": "string",
+    "senha": "string",
+    "cpf": "string",
+    "cep": "string",
+    "clientePerfis": [
+        {
+            "perfil": {
+                "id": "id"
+            }
+        },
+        {
+            "perfil": {
+                "id": "id"
+            }
+        }
+    ]
+}
+""")
 public class ClienteRequestDTO {
 	@NotBlank(message = "O nome do cliente não pode ser nulo ou vazio!")
 	private String nome;

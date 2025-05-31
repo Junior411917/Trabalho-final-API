@@ -50,7 +50,7 @@ public class PedidoService {
 
 		for (PedidoProduto pp : pedidoRequestDTO.getPedidosProdutos()) {
 			Produto produto = produtoRepository.findById(pp.getId().getProduto().getId())
-					.orElseThrow(() -> new RuntimeException("Produto não encontrado com id: " + pp.getId().getProduto().getId()));
+					.orElseThrow(() -> new PedidoException("Produto não encontrado com id: " + pp.getId().getProduto().getId()));
 
 			pp.setPedido(pedido);
 			pp.setProduto(produto);
@@ -78,7 +78,7 @@ public class PedidoService {
 
 			for(PedidoProduto pp : pedidoRequestDTO.getPedidosProdutos()) {
 				Produto produto = produtoRepository.findById(pp.getId().getProduto().getId())
-						.orElseThrow(() -> new RuntimeException("Produto não encontrado com id: " + pp.getId().getProduto().getId()));
+						.orElseThrow(() -> new PedidoException("Produto não encontrado com id: " + pp.getId().getProduto().getId()));
 
 				pp.setPedido(p);
 				pp.setProduto(produto);
