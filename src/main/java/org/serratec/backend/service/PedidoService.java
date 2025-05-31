@@ -1,6 +1,7 @@
 package org.serratec.backend.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.serratec.backend.dto.PedidoRequestDTO;
@@ -62,4 +63,27 @@ public class PedidoService {
 		return new PedidoResponseDTO(pedido);
 	}
 
+	@Transactional
+	public PedidoResponseDTO atualizar(Long id, PedidoRequestDTO pedidoRequestDTO) {
+		Optional<Pedido> pedido = Optional.ofNullable(
+				pedidoRepository.findById(id).orElseThrow(() -> new PedidoException("produto não encontrado!")));
+
+		pedido.ifPresent(p -> {
+			p.setId(id);
+			p.setDataPedido(pedidoRequestDTO.getDataPedido());
+			p.setHoraPedido(pedidoRequestDTO.getHoraPedido());
+			p.setDataEntrega(pedidoRequestDTO.getDataEntrega());
+			p.setStatus(pedidoRequestDTO.getStatus());
+			p.setCliente(pedidoRequestDTO.getCliente());
+		});
+		pedidoRepository.save(pedido.get());
+		return new PedidoResponseDTO(pedido.get());
+
+	}
+
+	public void deletar(Long id) {
+		Optional<Pedido> pedido = Optional
+				.ofNullable(pedidoRepository.findById(id).orElseThrow(() -> new PedidoException("Id não encontrado!")));
+		pedido.ifPresent(value -> pedidoRepository.deleteById(value.getId()));
+	}
 }

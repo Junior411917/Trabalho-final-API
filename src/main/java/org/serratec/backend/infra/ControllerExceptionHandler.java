@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.serratec.backend.exception.ClienteException;
+import org.serratec.backend.exception.PedidoException;
 import org.serratec.backend.exception.PerfilException;
 import org.serratec.backend.exception.ProdutoException;
 import org.springframework.http.HttpHeaders;
@@ -57,6 +58,12 @@ public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
 	
 	@ExceptionHandler(ProdutoException.class)
     public ResponseEntity<ErroResposta> handleProdutoException(ProdutoException ex) {
+        ErroResposta erroResposta = new ErroResposta(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Foi inserido um valor invalido na requisição!", LocalDateTime.now(), ex.getMessage().lines().toList());
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResposta);
+    }
+	
+	@ExceptionHandler(PedidoException.class)
+    public ResponseEntity<ErroResposta> handlePedidoException(PedidoException ex) {
         ErroResposta erroResposta = new ErroResposta(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Foi inserido um valor invalido na requisição!", LocalDateTime.now(), ex.getMessage().lines().toList());
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(erroResposta);
     }
