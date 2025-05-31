@@ -14,12 +14,10 @@ import jakarta.persistence.ManyToOne;
 public class PedidoProdutoPK {
 	@ManyToOne
 	@JoinColumn(name = "id_produto")
-	@JsonBackReference("produto-pedidoproduto")
 	private Produto produto;
 
 	@ManyToOne
 	@JoinColumn(name = "id_pedido")
-	@JsonBackReference("pedido-pedidoproduto")
 	private Pedido pedido;
 
 	public Produto getProduto() {

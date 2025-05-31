@@ -11,7 +11,6 @@ import org.serratec.backend.entity.PedidoProduto;
 import org.serratec.backend.enums.EstadoDoPedido;
 
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 
 public class PedidoRequestDTO {
 	@NotNull(message = "A data do pedido não ser nula!")

@@ -7,6 +7,7 @@ import java.util.Set;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
+import org.serratec.backend.dto.ClienteResponseDTO;
 
 @Entity
 public class Cliente {
@@ -101,5 +102,9 @@ public class Cliente {
 
 	public void setPedidos(List<Pedido> pedidos) {
 		this.pedidos = pedidos;
+	}
+
+	public ClienteResponseDTO toDTO(Cliente cliente){
+		return new ClienteResponseDTO(cliente);
 	}
 }
