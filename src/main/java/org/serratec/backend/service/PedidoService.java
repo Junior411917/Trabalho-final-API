@@ -75,10 +75,21 @@ public class PedidoService {
 			p.setDataEntrega(pedidoRequestDTO.getDataEntrega());
 			p.setStatus(pedidoRequestDTO.getStatus());
 			p.setCliente(pedidoRequestDTO.getCliente());
+
+			for(PedidoProduto pp : pedidoRequestDTO.getPedidosProdutos()) {
+				Produto produto = produtoRepository.findById(pp.getId().getProduto().getId())
+						.orElseThrow(() -> new RuntimeException("Produto não encontrado com id: " + pp.getId().getProduto().getId()));
+
+				pp.setPedido(p);
+				pp.setProduto(produto);
+				pp.setQuantidade(pp.getQuantidade());
+				pp.setDesconto(pp.getDesconto());
+				pp.setVenda(pp.getId().getProduto().getPrecoProduto() * pp.getQuantidade() - pp.getDesconto());
+			}
 		});
 		pedidoRepository.save(pedido.get());
+		pedidoProdutoRepository.saveAll(pedidoRequestDTO.getPedidosProdutos());
 		return new PedidoResponseDTO(pedido.get());
-
 	}
 
 	public void deletar(Long id) {

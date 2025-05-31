@@ -37,8 +37,8 @@ public class PedidoController {
 			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
 			@ApiResponse(responseCode = "403", description = "Não há permissão para acessar o recurso"),
 			@ApiResponse(responseCode = "404", description = "Recurso não encontrado"),
-			@ApiResponse(responseCode = "505", description = "Exceção interna da aplicação") })
-
+			@ApiResponse(responseCode = "505", description = "Exceção interna da aplicação")}
+	)
 	@GetMapping
 	public ResponseEntity<List<PedidoResponseDTO>> findAll() {
 		return ResponseEntity.ok().body(pedidoService.findAll());
@@ -50,8 +50,8 @@ public class PedidoController {
 			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
 			@ApiResponse(responseCode = "403", description = "Não há permissão para acessar o recurso"),
 			@ApiResponse(responseCode = "404", description = "Recurso não encontrado"),
-			@ApiResponse(responseCode = "505", description = "Exceção interna da aplicação") })
-
+			@ApiResponse(responseCode = "505", description = "Exceção interna da aplicação") }
+	)
 	@GetMapping("/{id}")
 	public ResponseEntity<PedidoResponseDTO> findById(@PathVariable Long id) {
 		return ResponseEntity.ok().body(pedidoService.findById(id));
@@ -63,8 +63,8 @@ public class PedidoController {
 			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
 			@ApiResponse(responseCode = "403", description = "Não há permissão para acessar o recurso"),
 			@ApiResponse(responseCode = "404", description = "Recurso não encontrado"),
-			@ApiResponse(responseCode = "505", description = "Exceção interna da aplicação") })
-
+			@ApiResponse(responseCode = "505", description = "Exceção interna da aplicação") }
+	)
 	@PostMapping
 	public ResponseEntity<PedidoResponseDTO> save(@Valid @RequestBody PedidoRequestDTO pedidoRequestDTO) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(pedidoService.save(pedidoRequestDTO));
@@ -76,8 +76,8 @@ public class PedidoController {
 			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
 			@ApiResponse(responseCode = "403", description = "Não há permissão para acessar o recurso"),
 			@ApiResponse(responseCode = "404", description = "Recurso não encontrado"),
-			@ApiResponse(responseCode = "505", description = "Exceção interna da aplicação") })
-
+			@ApiResponse(responseCode = "505", description = "Exceção interna da aplicação") }
+	)
 	@PutMapping("/{id}")
 	public ResponseEntity<PedidoResponseDTO> atualizar(@PathVariable Long id,
 			@Valid @RequestBody PedidoRequestDTO pedidoRequestDTO) {
@@ -90,7 +90,8 @@ public class PedidoController {
 			@ApiResponse(responseCode = "401", description = "Erro de autenticação"),
 			@ApiResponse(responseCode = "403", description = "Não há permissão para acessar o recurso"),
 			@ApiResponse(responseCode = "404", description = "Recurso não encontrado"),
-			@ApiResponse(responseCode = "505", description = "Exceção interna da aplicação") })
+			@ApiResponse(responseCode = "505", description = "Exceção interna da aplicação") }
+	)
 	@DeleteMapping("/{id}")
 	public ResponseEntity<PedidoResponseDTO> deletar(@PathVariable Long id) {
 		pedidoService.deletar(id);

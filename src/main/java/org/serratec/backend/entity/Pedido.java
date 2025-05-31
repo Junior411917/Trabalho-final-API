@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import org.serratec.backend.dto.PedidoResponseDTO;
 import org.serratec.backend.enums.EstadoDoPedido;
@@ -29,7 +28,7 @@ public class Pedido {
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
 
-	@OneToMany(mappedBy = "id.pedido")
+	@OneToMany(mappedBy = "id.pedido", cascade = CascadeType.ALL)
 	private List<PedidoProduto> pedidosProdutos = new ArrayList<>();
 
 	public Long getId() {
