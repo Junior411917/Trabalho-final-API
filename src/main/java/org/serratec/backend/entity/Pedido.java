@@ -23,11 +23,12 @@ public class Pedido {
 	@Enumerated(EnumType.STRING)
 	private EstadoDoPedido status;
 
-	@JsonBackReference
+	@JsonBackReference("cliente-pedido")
 	@ManyToOne
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
 
+	@JsonManagedReference("pedido-pedidoproduto")
 	@OneToMany(mappedBy = "id.pedido")
 	private List<PedidoProduto> pedidosProdutos = new ArrayList<>();
 
@@ -77,5 +78,13 @@ public class Pedido {
 
 	public void setStatus(EstadoDoPedido status) {
 		this.status = status;
+	}
+
+	public List<PedidoProduto> getPedidosProdutos() {
+		return pedidosProdutos;
+	}
+
+	public void setPedidosProdutos(List<PedidoProduto> pedidosProdutos) {
+		this.pedidosProdutos = pedidosProdutos;
 	}
 }

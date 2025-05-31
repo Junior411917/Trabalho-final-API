@@ -7,9 +7,11 @@ import org.serratec.backend.dto.PedidoRequestDTO;
 import org.serratec.backend.dto.PedidoResponseDTO;
 import org.serratec.backend.entity.Pedido;
 import org.serratec.backend.entity.PedidoProduto;
+import org.serratec.backend.entity.Produto;
 import org.serratec.backend.exception.PedidoException;
 import org.serratec.backend.repository.PedidoProdutoRepository;
 import org.serratec.backend.repository.PedidoRepository;
+import org.serratec.backend.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,9 @@ public class PedidoService {
 
 	@Autowired
 	private PedidoRepository pedidoRepository;
+
+	@Autowired
+	private ProdutoRepository produtoRepository;
 
 	@Autowired
 	private PedidoProdutoRepository pedidoProdutoRepository;
@@ -43,8 +48,11 @@ public class PedidoService {
 		pedido.setCliente(pedidoRequestDTO.getCliente());
 
 		for (PedidoProduto pp : pedidoRequestDTO.getPedidosProdutos()) {
+			Produto produto = produtoRepository.findById(pp.getId().getProduto().getId())
+					.orElseThrow(() -> new RuntimeException("Produto não encontrado com id: " + pp.getId().getProduto().getId()));
+
 			pp.setPedido(pedido);
-			pp.setProduto(pp.getId().getProduto());
+			pp.setProduto(produto);
 			pp.setQuantidade(pp.getQuantidade());
 			pp.setDesconto(pp.getDesconto());
 			pp.setVenda(pp.getId().getProduto().getPrecoProduto() * pp.getQuantidade() - pp.getDesconto());

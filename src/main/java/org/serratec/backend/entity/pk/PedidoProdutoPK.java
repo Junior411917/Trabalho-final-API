@@ -2,6 +2,7 @@ package org.serratec.backend.entity.pk;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.serratec.backend.entity.Pedido;
 import org.serratec.backend.entity.Produto;
 
@@ -13,10 +14,12 @@ import jakarta.persistence.ManyToOne;
 public class PedidoProdutoPK {
 	@ManyToOne
 	@JoinColumn(name = "id_produto")
+	@JsonBackReference("produto-pedidoproduto")
 	private Produto produto;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "id_pedido")
+	@JsonBackReference("pedido-pedidoproduto")
 	private Pedido pedido;
 
 	public Produto getProduto() {

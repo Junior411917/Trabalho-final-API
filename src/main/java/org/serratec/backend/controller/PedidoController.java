@@ -20,7 +20,6 @@ import jakarta.validation.Valid;
 @RestController
 @RequestMapping("/pedidos")
 public class PedidoController {
-
 	@Autowired
 	private PedidoService pedidoService;
 	
@@ -28,9 +27,9 @@ public class PedidoController {
 	public ResponseEntity<List<PedidoResponseDTO>> findAll() {
 		return ResponseEntity.ok().body(pedidoService.findAll());
 	}
-	
+
 	@GetMapping("/{id}")
-	public ResponseEntity<PedidoResponseDTO> findById(@PathVariable Long id){
+	public ResponseEntity<PedidoResponseDTO> findById(@PathVariable Long id) {
 		return ResponseEntity.ok().body(pedidoService.findById(id));
 	}
 	
@@ -38,6 +37,4 @@ public class PedidoController {
 	public ResponseEntity<PedidoResponseDTO> save(@Valid @RequestBody PedidoRequestDTO pedidoRequestDTO){
 		return ResponseEntity.status(HttpStatus.CREATED).body(pedidoService.save(pedidoRequestDTO));
 	}
-	
-
 }
