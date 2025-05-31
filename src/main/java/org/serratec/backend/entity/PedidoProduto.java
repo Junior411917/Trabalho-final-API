@@ -17,12 +17,11 @@ public class PedidoProduto {
 	public PedidoProduto() {
 	}
 
-	public PedidoProduto(Pedido pedido, Produto produto) {
-		id.setPedido(pedido); 
+	public PedidoProduto(Pedido pedido, Produto produto, Double desconto, Integer quantidade) {
+		id.setPedido(pedido);
 		id.setProduto(produto);
-		this.desconto = pedido.getDesconto();
-		this.quantidade = pedido.getQuantidade();
-		this.venda = produto.getPrecoProduto() * quantidade - desconto;
+		this.desconto = desconto;
+		this.quantidade = quantidade;
 	}
 
 	public PedidoProdutoPK getId() {

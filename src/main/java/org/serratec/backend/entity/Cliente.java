@@ -20,7 +20,7 @@ public class Cliente {
 	private String senha;
 	private String cpf;
 
-	@JsonManagedReference
+	@JsonManagedReference("cliente-pedido")
 	@OneToMany(mappedBy = "cliente")
 	private List<Pedido> pedidos;
 

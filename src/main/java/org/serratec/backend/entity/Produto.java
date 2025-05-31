@@ -3,6 +3,7 @@ package org.serratec.backend.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.serratec.backend.enums.Categoria;
 
 import jakarta.persistence.Entity;
@@ -25,6 +26,7 @@ public class Produto {
 	@Enumerated(EnumType.STRING)
 	private Categoria categoria;
 
+	@JsonManagedReference("produto-pedidoproduto")
 	@OneToMany(mappedBy = "id.produto")
 	private List<PedidoProduto> pedidosProdutos = new ArrayList<>();
 

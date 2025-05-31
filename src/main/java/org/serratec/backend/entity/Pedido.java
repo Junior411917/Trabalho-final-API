@@ -15,9 +15,7 @@ public class Pedido {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	private Integer quantidade;
-	private Double desconto;
+
 	private LocalDate dataPedido;
 	private LocalDateTime horaPedido;
 	private LocalDate dataEntrega;
@@ -25,25 +23,14 @@ public class Pedido {
 	@Enumerated(EnumType.STRING)
 	private EstadoDoPedido status;
 
-	@JsonBackReference
+	@JsonBackReference("cliente-pedido")
 	@ManyToOne
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
 
+	@JsonManagedReference("pedido-pedidoproduto")
 	@OneToMany(mappedBy = "id.pedido")
 	private List<PedidoProduto> pedidosProdutos = new ArrayList<>();
-
-	public Integer getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(Integer quantidade) {
-		this.quantidade = quantidade;
-	}
-
-	public Double getDesconto() {
-		return desconto;
-	}
 
 	public Long getId() {
 		return id;
@@ -51,10 +38,6 @@ public class Pedido {
 
 	public Cliente getCliente() {
 		return cliente;
-	}
-
-	public void setDesconto(Double desconto) {
-		this.desconto = desconto;
 	}
 
 	public void setCliente(Cliente cliente) {
@@ -95,5 +78,13 @@ public class Pedido {
 
 	public void setStatus(EstadoDoPedido status) {
 		this.status = status;
+	}
+
+	public List<PedidoProduto> getPedidosProdutos() {
+		return pedidosProdutos;
+	}
+
+	public void setPedidosProdutos(List<PedidoProduto> pedidosProdutos) {
+		this.pedidosProdutos = pedidosProdutos;
 	}
 }
