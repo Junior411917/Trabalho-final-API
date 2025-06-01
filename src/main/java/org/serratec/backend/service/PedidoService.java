@@ -50,18 +50,18 @@ public class PedidoService {
 		pedido.setCliente(pedidoRequestDTO.getCliente());
 
 		for (PedidoProduto pp : pedidoRequestDTO.getPedidosProdutos()) {
-			Produto produto = produtoRepository.findById(pp.getId().getProduto().getId())
-					.orElseThrow(() -> new PedidoException("Produto não encontrado com id: " + pp.getId().getProduto().getId()));
+			Produto produto = produtoRepository.findById(pp.getId().getProduto().getId()).orElseThrow(
+					() -> new PedidoException("Produto não encontrado com id: " + pp.getId().getProduto().getId()));
 
-			if(pp.getQuantidade() <= 0){
+			if (pp.getQuantidade() <= 0) {
 				throw new PedidoException("A quantidade solicitada deve ser maior que 0 (zero)");
 			}
 
-			if(produto.getEstoque() <= 0){
+			if (produto.getEstoque() <= 0) {
 				String categoria = String.valueOf(produto.getCategoria()).toLowerCase().replaceAll("_", " ");
 				throw new PedidoException("O estoque do(a) " + categoria + " " + produto.getNome() + " esgotou!");
 			} else {
-				if(pp.getQuantidade() <= produto.getEstoque()){
+				if (pp.getQuantidade() <= produto.getEstoque()) {
 					produto.setEstoque(produto.getEstoque() - pp.getQuantidade());
 					produtoRepository.save(produto);
 				} else {
@@ -69,9 +69,10 @@ public class PedidoService {
 				}
 			}
 
-			if(produto.getValidade().isBefore(LocalDate.now())){
+			if (produto.getValidade().isBefore(LocalDate.now())) {
 				String categoria = String.valueOf(produto.getCategoria()).toLowerCase().replaceAll("_", " ");
-				throw new PedidoException("A data de validade do(a) " + categoria + " " + produto.getNome() + " venceu!");
+				throw new PedidoException(
+						"A data de validade do(a) " + categoria + " " + produto.getNome() + " venceu!");
 			}
 
 			pp.setPedido(pedido);
@@ -79,6 +80,7 @@ public class PedidoService {
 			pp.setQuantidade(pp.getQuantidade());
 			pp.setDesconto(pp.getDesconto());
 			pp.setVenda(pp.getId().getProduto().getPreco() * pp.getQuantidade() - pp.getDesconto());
+
 		}
 		pedidoRepository.save(pedido);
 		pedidoProdutoRepository.saveAll(pedidoRequestDTO.getPedidosProdutos());
@@ -98,9 +100,9 @@ public class PedidoService {
 			p.setStatus(pedidoRequestDTO.getStatus());
 			p.setCliente(pedidoRequestDTO.getCliente());
 
-			for(PedidoProduto pp : pedidoRequestDTO.getPedidosProdutos()) {
-				Produto produto = produtoRepository.findById(pp.getId().getProduto().getId())
-						.orElseThrow(() -> new PedidoException("Produto não encontrado com id: " + pp.getId().getProduto().getId()));
+			for (PedidoProduto pp : pedidoRequestDTO.getPedidosProdutos()) {
+				Produto produto = produtoRepository.findById(pp.getId().getProduto().getId()).orElseThrow(
+						() -> new PedidoException("Produto não encontrado com id: " + pp.getId().getProduto().getId()));
 
 				pp.setPedido(p);
 				pp.setProduto(produto);
@@ -114,6 +116,7 @@ public class PedidoService {
 		return new PedidoResponseDTO(pedido.get());
 	}
 
+	@Transactional
 	public void deletar(Long id) {
 		Optional<Pedido> pedido = Optional
 				.ofNullable(pedidoRepository.findById(id).orElseThrow(() -> new PedidoException("Id não encontrado!")));

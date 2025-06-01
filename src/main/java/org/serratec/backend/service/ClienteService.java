@@ -16,6 +16,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -79,6 +80,8 @@ public class ClienteService {
         clienteEntity.setEmail(clienteRequestDTO.getEmail());
         clienteEntity.setSenha(encoder.encode(clienteRequestDTO.getSenha()));
         clienteEntity.setCpf(clienteRequestDTO.getCpf());
+        clienteEntity.setCadastro(LocalDate.now());
+        clienteEntity.setStatus(true);
 
         for(ClientePerfil cp : clienteRequestDTO.getClientePerfis()){
             cp.setCliente(clienteEntity);
@@ -119,9 +122,14 @@ public class ClienteService {
         return new ClienteResponseDTO(cliente.get());
     }
 
-    public void delete(Long id){
+    public String delete(Long id){
         Optional<Cliente> cliente = Optional.ofNullable(clienteRepository.findById(id).orElseThrow(() -> new ClienteException("ID não encontrado.")));
-
-        cliente.ifPresent(value -> clienteRepository.deleteById(value.getId()));
+        if (cliente.get().getStatus().equals(false)) {
+        	throw new ClienteException("O cliente já está desativado");
+        }else {
+        	cliente.get().setStatus(false);
+        	clienteRepository.save(cliente.get());
+        	return "Cliente desativado!";
+        }
     }
 }

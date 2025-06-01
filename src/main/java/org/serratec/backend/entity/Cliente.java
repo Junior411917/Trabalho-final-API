@@ -1,17 +1,26 @@
 package org.serratec.backend.entity;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-import jakarta.persistence.*;
 import org.serratec.backend.dto.ClienteResponseDTO;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Cliente implements UserDetails {
@@ -24,6 +33,8 @@ public class Cliente implements UserDetails {
 	private String email;
 	private String senha;
 	private String cpf;
+	private LocalDate cadastro;
+	private Boolean status;
 
 	@JsonManagedReference("cliente-pedido")
 	@OneToMany(mappedBy = "cliente")
@@ -38,9 +49,7 @@ public class Cliente implements UserDetails {
 
 	@Override
 	public String toString() {
-		return 	"\nnome: " + nome +
-				"\ntelefone: " + telefone +
-				"\nemail: " + email;
+		return "\nnome: " + nome + "\ntelefone: " + telefone + "\nemail: " + email;
 	}
 
 	public Long getId() {
@@ -115,7 +124,23 @@ public class Cliente implements UserDetails {
 		this.pedidos = pedidos;
 	}
 
-	public ClienteResponseDTO toDTO(Cliente cliente){
+	public LocalDate getCadastro() {
+		return cadastro;
+	}
+
+	public void setCadastro(LocalDate cadastro) {
+		this.cadastro = cadastro;
+	}
+
+	public Boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
+
+	public ClienteResponseDTO toDTO(Cliente cliente) {
 		return new ClienteResponseDTO(cliente);
 	}
 
