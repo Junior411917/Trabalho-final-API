@@ -75,17 +75,16 @@ public class ClienteController {
         return ResponseEntity.ok().body(service.update(id, cliente));
     }
 
-    @Operation(summary = "Deleta um cliente existente", description = "Através de uma busca por id a requisição deleta o cliente")
+    @Operation(summary = "Desativa um cliente existente", description = "Através de uma busca por id a requisição desativa o cliente")
     @ApiResponses(value = { @ApiResponse(responseCode = "200", content = {
-            @Content(schema = @Schema(implementation = Cliente.class), mediaType = "application/json") }, description = "Deleta um cliente existente"),
+            @Content(schema = @Schema(implementation = Cliente.class), mediaType = "application/json") }, description = "Desativa um cliente existente"),
             @ApiResponse(responseCode = "401", description = "Erro de autenticação"),
             @ApiResponse(responseCode = "403", description = "Não há permissão para acessar o recurso"),
             @ApiResponse(responseCode = "404", description = "Recurso não encontrado"),
             @ApiResponse(responseCode = "505", description = "Exceção interna da aplicação") }
     )
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id){
-        service.delete(id);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<String> delete(@PathVariable Long id){
+        return ResponseEntity.ok().body(service.delete(id));
     }
 }
