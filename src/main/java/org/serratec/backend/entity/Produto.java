@@ -1,5 +1,6 @@
 package org.serratec.backend.entity;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,23 +12,17 @@ public class Produto {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String nomeProduto;
-	private String descricaoProduto;
-	private Double precoProduto;
+	private String nome;
+	private String descricao;
+	private Double preco;
+	private Integer estoque;
+	private LocalDate validade;
 
 	@Enumerated(EnumType.STRING)
 	private Categoria categoria;
 
 	@OneToMany(mappedBy = "id.produto", cascade = CascadeType.ALL)
 	private List<PedidoProduto> pedidosProdutos = new ArrayList<>();
-
-	public Categoria getCategoria() {
-		return categoria;
-	}
-
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
 
 	public Long getId() {
 		return id;
@@ -37,28 +32,52 @@ public class Produto {
 		this.id = id;
 	}
 
-	public String getNomeProduto() {
-		return nomeProduto;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNomeProduto(String nomeProduto) {
-		this.nomeProduto = nomeProduto;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public String getDescricaoProduto() {
-		return descricaoProduto;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setDescricaoProduto(String descricaoProduto) {
-		this.descricaoProduto = descricaoProduto;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
-	public Double getPrecoProduto() {
-		return precoProduto;
+	public Double getPreco() {
+		return preco;
 	}
 
-	public void setPrecoProduto(Double precoProduto) {
-		this.precoProduto = precoProduto;
+	public void setPreco(Double preco) {
+		this.preco = preco;
+	}
+
+	public Integer getEstoque() {
+		return estoque;
+	}
+
+	public void setEstoque(Integer estoque) {
+		this.estoque = estoque;
+	}
+
+	public LocalDate getValidade() {
+		return validade;
+	}
+
+	public void setValidade(LocalDate validade) {
+		this.validade = validade;
+	}
+
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
 	}
 
 	public List<PedidoProduto> getPedidosProdutos() {
