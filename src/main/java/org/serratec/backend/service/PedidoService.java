@@ -53,6 +53,10 @@ public class PedidoService {
 			Produto produto = produtoRepository.findById(pp.getId().getProduto().getId())
 					.orElseThrow(() -> new PedidoException("Produto não encontrado com id: " + pp.getId().getProduto().getId()));
 
+			if(pp.getQuantidade() <= 0){
+				throw new PedidoException("A quantidade solicitada deve ser maior que 0 (zero)");
+			}
+
 			if(produto.getEstoque() <= 0){
 				String categoria = String.valueOf(produto.getCategoria()).toLowerCase().replaceAll("_", " ");
 				throw new PedidoException("O estoque do(a) " + categoria + " " + produto.getNome() + " esgotou!");

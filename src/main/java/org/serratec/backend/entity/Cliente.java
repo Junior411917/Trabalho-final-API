@@ -1,5 +1,6 @@
 package org.serratec.backend.entity;
 
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -8,9 +9,12 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.*;
 import org.serratec.backend.dto.ClienteResponseDTO;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 @Entity
-public class Cliente {
+public class Cliente implements UserDetails {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -113,5 +117,45 @@ public class Cliente {
 
 	public ClienteResponseDTO toDTO(Cliente cliente){
 		return new ClienteResponseDTO(cliente);
+	}
+
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+
+		for (ClientePerfil up : clientePerfis) {
+			grantedAuthorities.add(new SimpleGrantedAuthority(up.getPerfil().getNome()));
+		}
+		return grantedAuthorities;
+	}
+
+	@Override
+	public String getPassword() {
+		return senha;
+	}
+
+	@Override
+	public String getUsername() {
+		return email;
+	}
+
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		return true;
 	}
 }
