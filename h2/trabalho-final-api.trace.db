@@ -1,0 +1,213 @@
+2025-06-01 15:47:02.398687-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "NOME_PRODUTO" not found; SQL statement:
+INSERT INTO produto (nome_produto, descricao_produto, preco_produto, estoque, validade, categoria) VALUES
+-- Medicamentos
+('Paracetamol 500mg', 'Analgésico e antitérmico', 9.90, 200, '2026-01-01', 'MEDICAMENTO'),
+('Dipirona 1g', 'Analgésico e antitérmico', 8.50, 150, '2026-02-01', 'MEDICAMENTO'),
+('Ibuprofeno 600mg', 'Anti-inflamatório e analgésico', 14.90, 180, '2026-03-15', 'MEDICAMENTO'),
+('Amoxicilina 500mg', 'Antibiótico para infecções bacterianas', 29.90, 80, '2025-12-01', 'MEDICAMENTO'),
+('Losartana 50mg', 'Controlador de pressão arterial', 19.50, 100, '2026-05-01', 'MEDICAMENTO'),
+
+-- Suplementos
+('Vitamina C 500mg', 'Suplemento vitamínico', 24.90, 120, '2027-01-01', 'SUPLEMENTO'),
+('Ômega 3 1000mg', 'Suplemento de óleo de peixe', 49.90, 75, '2026-09-01', 'SUPLEMENTO'),
+('Multivitamínico Completo', 'Suplemento de vitaminas e minerais', 34.90, 90, '2027-06-01', 'SUPLEMENTO'),
+('Colágeno Hidrolisado', 'Fortalecimento de pele e articulações', 59.90, 60, '2026-11-01', 'SUPLEMENTO'),
+('Creatina Monohidratada', 'Suplemento esportivo', 89.90, 50, '2027-03-01', 'SUPLEMENTO'),
+
+-- Infantil
+('Fralda Pampers M', 'Fralda descartável tamanho M', 69.90, 200, '2026-12-01', 'INFANTIL'),
+('Leite NAN Comfor 800g', 'Leite infantil de transição', 79.90, 80, '2026-08-01', 'INFANTIL'),
+('Lenço Umedecido Huggies', 'Lenço umedecido infantil', 19.90, 150, '2026-07-01', 'INFANTIL'),
+('Shampoo Johnsons Baby', 'Shampoo suave para bebês', 15.90, 90, '2026-05-01', 'INFANTIL'),
+('Pomada Bepantol Baby', 'Pomada para assaduras', 34.90, 100, '2026-06-01', 'INFANTIL'),
+
+-- Dermocosmético
+('Protetor Solar La Roche 50', 'Protetor solar facial', 79.90, 70, '2026-12-01', 'DERMOCOSMETICO'),
+('Cicatricure Creme', 'Redução de cicatrizes', 59.90, 40, '2027-02-01', 'DERMOCOSMETICO'),
+('Normaderm Gel Vichy', 'Gel de limpeza facial', 54.90, 60, '2026-10-01', 'DERMOCOSMETICO'),
+('Epidrat Corpo', 'Hidratante corporal', 49.90, 80, '2026-09-01', 'DERMOCOSMETICO'),
+('Minoxidil Kirkland 5%', 'Tratamento capilar', 129.90, 30, '2026-11-01', 'DERMOCOSMETICO'),
+
+-- Socorro
+('Curativo Band-Aid', 'Curativo adesivo', 12.90, 150, '2027-01-01', 'SOCORRO'),
+('Álcool 70% Spray', 'Antisséptico', 9.90, 100, '2026-12-01', 'SOCORRO'),
+('Soro Fisiológico 500ml', 'Higiene nasal e ocular', 6.90, 200, '2026-10-01', 'SOCORRO'),
+('Gaze Estéril 10x10', 'Curativo', 8.90, 80, '2026-08-01', 'SOCORRO'),
+('Esparadrapo Impermeável', 'Fixação de curativos', 11.90, 70, '2027-05-01', 'SOCORRO'),
+
+-- Higiene Pessoal
+('Desodorante Dove Aerosol', 'Desodorante antitranspirante', 18.90, 100, '2027-06-01', 'HIGIENE_PESSOAL'),
+('Sabonete Dove', 'Sabonete hidratante', 4.90, 300, '2027-03-01', 'HIGIENE_PESSOAL'),
+('Pasta de Dente Colgate', 'Higiene bucal diária', 6.90, 250, '2027-02-01', 'HIGIENE_PESSOAL'),
+('Absorvente Always Noturno', 'Absorvente feminino', 15.90, 180, '2026-12-01', 'HIGIENE_PESSOAL'),
+('Fio Dental Oral-B', 'Fio dental encerado', 9.90, 150, '2027-04-01', 'HIGIENE_PESSOAL'),
+
+-- Saúde Bucal
+('Enxaguante Bucal Listerine', 'Controle de mau hálito', 19.90, 100, '2026-11-01', 'SAUDE_BUCAL'),
+('Escova Dental Colgate 360', 'Escova dental completa', 12.90, 120, '2027-05-01', 'SAUDE_BUCAL'),
+('Pasta Sensodyne 90g', 'Pasta para dentes sensíveis', 23.90, 80, '2026-09-01', 'SAUDE_BUCAL'),
+('Clareador Dental White', 'Clareamento dental', 89.90, 40, '2026-08-01', 'SAUDE_BUCAL'),
+('Kit Ortodôntico', 'Higiene de aparelhos', 39.90, 50, '2027-01-01', 'SAUDE_BUCAL'),
+
+-- Cuidado com o Cabelo
+('Shampoo Pantene 400ml', 'Força e reconstrução', 18.90, 100, '2026-10-01', 'CUIDADO_COM_O_CABELO'),
+('Condicionador Elseve 400ml', 'Hidratação intensa', 21.90, 80, '2026-12-01', 'CUIDADO_COM_O_CABELO'),
+('Máscara Capilar Skala', 'Nutrição capilar', 12.90, 70, '2026-11-01', 'CUIDADO_COM_O_CABELO'),
+('Óleo Capilar Niely', 'Óleo de reparação', 14.90, 60, '2027-01-01', 'CUIDADO_COM_O_CABELO'),
+('Spray Térmico Salon Line', 'Proteção térmica', 29.90, 50, '2027-02-01', 'CUIDADO_COM_O_CABELO'),
+
+-- Ortopedia
+('Joelheira Ortopédica', 'Suporte e compressão', 49.90, 40, '2027-06-01', 'ORTOPEDIA'),
+('Munhequeira Ajustável', 'Suporte para punho', 34.90, 60, '2027-05-01', 'ORTOPEDIA'),
+('Tornozeleira Esportiva', 'Estabilização de tornozelo', 39.90, 50, '2026-12-01', 'ORTOPEDIA'),
+('Palminha Ortopédica', 'Conforto e suporte', 29.90, 70, '2027-01-01', 'ORTOPEDIA'),
+('Cinta Lombar', 'Alívio de dores lombares', 99.90, 30, '2027-04-01', 'ORTOPEDIA'),
+
+-- Nutrição Especializada
+('Ensure Plus Baunilha', 'Suplemento nutricional', 59.90, 40, '2026-09-01', 'NUTRICAO_ESPECIALIZADA'),
+('Fortini 200ml', 'Nutrição infantil especializada', 34.90, 50, '2026-10-01', 'NUTRICAO_ESPECIALIZADA'),
+('Nutridrink 200ml', 'Suplemento para adultos', 39.90, 45, '2026-08-01', 'NUTRICAO_ESPECIALIZADA'),
+('Resource Protein 200ml', 'Alta proteína', 42.90, 30, '2026-07-01', 'NUTRICAO_ESPECIALIZADA'),
+('Modulen IBD', 'Suplemento para doenças intestinais', 89.90, 20, '2026-06-01', 'NUTRICAO_ESPECIALIZADA'),
+
+-- Home Care
+('Cadeira de Rodas Dobrável', 'Mobilidade domiciliar', 599.90, 5, '2030-01-01', 'HOME_CARE'),
+('Andador 4 Rodas', 'Apoio para mobilidade', 499.90, 6, '2030-01-01', 'HOME_CARE'),
+('Comadre Plástica', 'Uso hospitalar', 49.90, 30, '2030-01-01', 'HOME_CARE'),
+('Aspirador de Secreções', 'Uso domiciliar', 799.90, 2, '2030-01-01', 'HOME_CARE'),
+('Cadeira de Banho', 'Mobilidade para banho', 699.90, 4, '2030-01-01', 'HOME_CARE'),
+
+-- Fitoterápico
+('Valeriana 450mg', 'Calmante natural', 29.90, 60, '2027-01-01', 'FITOTERAPICO'),
+('Chá de Camomila', 'Relaxante natural', 9.90, 100, '2026-12-01', 'FITOTERAPICO'),
+('Extrato de Própolis', 'Fortalecimento imunológico', 19.90, 80, '2026-11-01', 'FITOTERAPICO'),
+('Centella Asiática', 'Auxílio circulatório', 24.90, 40, '2027-02-01', 'FITOTERAPICO'),
+('Ginkgo Biloba 120mg', 'Melhora da memória', 34.90, 50, '2027-03-01', 'FITOTERAPICO'),
+
+-- Perfumaria
+('Perfume Natura Homem', 'Fragrância masculina', 149.90, 20, '2028-01-01', 'PERFUMARIA'),
+('Perfume Natura Luna', 'Fragrância feminina', 159.90, 18, '2028-01-01', 'PERFUMARIA'),
+('Desodorante AXE Dark Temptation', 'Desodorante masculino', 19.90, 60, '2027-06-01', 'PERFUMARIA'),
+('Body Splash Boticário', 'Fragrância corporal', 49.90, 40, '2028-02-01', 'PERFUMARIA'),
+('Perfume Giovanna Baby', 'Colônia suave', 39.90, 50, '2027-05-01', 'PERFUMARIA') [42122-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.table.Table.getColumn(Table.java:786)
+	at org.h2.command.Parser.parseColumn(Parser.java:1171)
+	at org.h2.command.Parser.parseColumnList(Parser.java:1156)
+	at org.h2.command.Parser.parseInsert(Parser.java:1530)
+	at org.h2.command.Parser.parsePrepared(Parser.java:698)
+	at org.h2.command.Parser.parse(Parser.java:581)
+	at org.h2.command.Parser.parse(Parser.java:556)
+	at org.h2.command.Parser.prepareCommand(Parser.java:484)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:645)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:561)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1164)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1344)
+	at org.h2.server.web.WebApp.query(WebApp.java:1142)
+	at org.h2.server.web.WebApp.query(WebApp.java:1118)
+	at org.h2.server.web.WebApp.process(WebApp.java:244)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:176)
+	at org.h2.server.web.JakartaWebServlet.doGet(JakartaWebServlet.java:129)
+	at org.h2.server.web.JakartaWebServlet.doPost(JakartaWebServlet.java:166)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.serratec.backend.security.JwtAuthorizationFilter.doFilterInternal(JwtAuthorizationFilter.java:41)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:227)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:221)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.web.filter.CorsFilter.doFilterInternal(CorsFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:243)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2025-06-01 15:48:25.592938-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "PRODUTOS" not found; SQL statement:
+INSERT INTO produtos (nome, descricao, preco, estoque, validade, categoria) VALUES
+('Shampoo Anticaspa Clear', 'Shampoo que combate a caspa e hidrata o couro cabeludo.', 19.90, 50, '2027-03-01', 'CUIDADO_COM_O_CABELO'),
+('Condicionador Pantene Hidro-Cauterização', 'Condicionador para fortalecimento e hidratação dos fios.', 17.50, 40, '2027-06-01', 'CUIDADO_COM_O_CABELO'),
+('Máscara Capilar Lola Dream Cream', 'Máscara nutritiva para cabelos ressecados e danificados.', 32.00, 25, '2026-09-01', 'CUIDADO_COM_O_CABELO'),
+('Óleo de Argan Lola', 'Óleo reparador e finalizador para cabelos.', 25.90, 35, '2027-02-01', 'CUIDADO_COM_O_CABELO'),
+('Spray Protetor Térmico TRESemmé', 'Spray para proteger os fios contra o calor do secador e chapinha.', 18.90, 60, '2027-08-01', 'CUIDADO_COM_O_CABELO') [42102-232]
