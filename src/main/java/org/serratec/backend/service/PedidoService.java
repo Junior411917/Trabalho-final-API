@@ -7,10 +7,12 @@ import java.util.stream.Collectors;
 
 import org.serratec.backend.dto.PedidoRequestDTO;
 import org.serratec.backend.dto.PedidoResponseDTO;
+import org.serratec.backend.entity.Cliente;
 import org.serratec.backend.entity.Pedido;
 import org.serratec.backend.entity.PedidoProduto;
 import org.serratec.backend.entity.Produto;
 import org.serratec.backend.exception.PedidoException;
+import org.serratec.backend.repository.ClienteRepository;
 import org.serratec.backend.repository.PedidoProdutoRepository;
 import org.serratec.backend.repository.PedidoRepository;
 import org.serratec.backend.repository.ProdutoRepository;
@@ -27,6 +29,9 @@ public class PedidoService {
 
 	@Autowired
 	private ProdutoRepository produtoRepository;
+
+	@Autowired
+	private ClienteRepository clienteRepository;
 
 	@Autowired
 	private PedidoProdutoRepository pedidoProdutoRepository;
@@ -47,8 +52,16 @@ public class PedidoService {
 		pedido.setHoraPedido(pedidoRequestDTO.getHoraPedido());
 		pedido.setDataEntrega(pedidoRequestDTO.getDataEntrega());
 		pedido.setStatus(pedidoRequestDTO.getStatus());
-		pedido.setCliente(pedidoRequestDTO.getCliente());
 
+		Cliente cliente = clienteRepository.findById(pedidoRequestDTO.getCliente().getId())
+				.orElseThrow(() -> new PedidoException("ID do cliente não encontrado!"));
+
+		if (cliente.getStatus() == false) {
+			throw new PedidoException("O cliente vinculado a esse pedido está desativado!");
+		} else {
+			pedido.setCliente(cliente);
+		}
+		
 		for (PedidoProduto pp : pedidoRequestDTO.getPedidosProdutos()) {
 			Produto produto = produtoRepository.findById(pp.getId().getProduto().getId()).orElseThrow(
 					() -> new PedidoException("Produto não encontrado com id: " + pp.getId().getProduto().getId()));
