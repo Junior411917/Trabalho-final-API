@@ -1,6 +1,7 @@
 package org.serratec.backend.service;
 
 import jakarta.transaction.Transactional;
+import org.serratec.backend.config.MailConfig;
 import org.serratec.backend.dto.ClienteRequestDTO;
 import org.serratec.backend.dto.ClienteResponseDTO;
 import org.serratec.backend.entity.Cliente;
@@ -36,6 +37,9 @@ public class ClienteService {
 
     @Autowired
     private PerfilService perfilService;
+
+    @Autowired
+    private MailConfig mailConfig;
 
     public List<ClienteResponseDTO> findAll(){
         return clienteRepository.findAll().stream().map(ClienteResponseDTO::new).collect(Collectors.toList());
@@ -85,6 +89,8 @@ public class ClienteService {
         clienteRepository.save(clienteEntity);
         clientePerfilRepository.saveAll(clienteRequestDTO.getClientePerfis());
 
+        mailConfig.save(clienteEntity.getEmail(), "Confirmação de cadastro", clienteEntity.toString());
+
         return new ClienteResponseDTO(clienteEntity);
     }
 
@@ -107,6 +113,8 @@ public class ClienteService {
 
         clienteRepository.save(cliente.get());
         clientePerfilRepository.saveAll(clienteRequestDTO.getClientePerfis());
+
+        mailConfig.update(cliente.get().getEmail(), "Atualização de cadastro", cliente.get().toString());
 
         return new ClienteResponseDTO(cliente.get());
     }
