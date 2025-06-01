@@ -1,5 +1,6 @@
 package org.serratec.backend.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -52,11 +53,28 @@ public class PedidoService {
 			Produto produto = produtoRepository.findById(pp.getId().getProduto().getId())
 					.orElseThrow(() -> new PedidoException("Produto não encontrado com id: " + pp.getId().getProduto().getId()));
 
+			if(produto.getEstoque() <= 0){
+				String categoria = String.valueOf(produto.getCategoria()).toLowerCase().replaceAll("_", " ");
+				throw new PedidoException("O estoque do(a) " + categoria + " " + produto.getNome() + " esgotou!");
+			} else {
+				if(pp.getQuantidade() <= produto.getEstoque()){
+					produto.setEstoque(produto.getEstoque() - pp.getQuantidade());
+					produtoRepository.save(produto);
+				} else {
+					throw new PedidoException("A quantidade solicitada é maior do que a em estoque!");
+				}
+			}
+
+			if(produto.getValidade().isBefore(LocalDate.now())){
+				String categoria = String.valueOf(produto.getCategoria()).toLowerCase().replaceAll("_", " ");
+				throw new PedidoException("A data de validade do(a) " + categoria + " " + produto.getNome() + " venceu!");
+			}
+
 			pp.setPedido(pedido);
 			pp.setProduto(produto);
 			pp.setQuantidade(pp.getQuantidade());
 			pp.setDesconto(pp.getDesconto());
-			pp.setVenda(pp.getId().getProduto().getPrecoProduto() * pp.getQuantidade() - pp.getDesconto());
+			pp.setVenda(pp.getId().getProduto().getPreco() * pp.getQuantidade() - pp.getDesconto());
 		}
 		pedidoRepository.save(pedido);
 		pedidoProdutoRepository.saveAll(pedidoRequestDTO.getPedidosProdutos());
@@ -84,7 +102,7 @@ public class PedidoService {
 				pp.setProduto(produto);
 				pp.setQuantidade(pp.getQuantidade());
 				pp.setDesconto(pp.getDesconto());
-				pp.setVenda(pp.getId().getProduto().getPrecoProduto() * pp.getQuantidade() - pp.getDesconto());
+				pp.setVenda(pp.getId().getProduto().getPreco() * pp.getQuantidade() - pp.getDesconto());
 			}
 		});
 		pedidoRepository.save(pedido.get());

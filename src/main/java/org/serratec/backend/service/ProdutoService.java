@@ -31,11 +31,13 @@ public class ProdutoService {
     @Transactional
 	public ProdutoResponseDTO inserir(ProdutoRequestDTO produtoDTO) {
 		Produto produto = new Produto();
-		produto.setNomeProduto(produtoDTO.getNomeProduto());
-		produto.setDescricaoProduto(produtoDTO.getDescricaoProduto());
-		produto.setPrecoProduto(produtoDTO.getPrecoProduto());
+		produto.setNome(produtoDTO.getNomeProduto());
+		produto.setDescricao(produtoDTO.getDescricaoProduto());
+		produto.setPreco(produtoDTO.getPrecoProduto());
+        produto.setEstoque(produtoDTO.getEstoque());
+        produto.setValidade(produtoDTO.getValidade());
 		produto.setCategoria(produtoDTO.getCategoria());
-		
+
 		repository.save(produto);
 		return new ProdutoResponseDTO(produto);
 	}
@@ -46,9 +48,11 @@ public class ProdutoService {
 
         produto.ifPresent(p -> {
             p.setId(id);
-            p.setNomeProduto(produtoRequestDTO.getNomeProduto());
-            p.setDescricaoProduto(produtoRequestDTO.getDescricaoProduto());
-            p.setPrecoProduto(produtoRequestDTO.getPrecoProduto());
+            p.setNome(produtoRequestDTO.getNomeProduto());
+            p.setDescricao(produtoRequestDTO.getDescricaoProduto());
+            p.setPreco(produtoRequestDTO.getPrecoProduto());
+            p.setEstoque(produtoRequestDTO.getEstoque());
+            p.setValidade(produtoRequestDTO.getValidade());
             p.setCategoria(produtoRequestDTO.getCategoria());
         });
 
