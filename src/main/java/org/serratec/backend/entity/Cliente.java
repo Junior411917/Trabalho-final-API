@@ -32,6 +32,13 @@ public class Cliente {
 	@JoinColumn(name = "id_endereco")
 	private Endereco endereco;
 
+	@Override
+	public String toString() {
+		return 	"\nnome: " + nome +
+				"\ntelefone: " + telefone +
+				"\nemail: " + email;
+	}
+
 	public Long getId() {
 		return id;
 	}
