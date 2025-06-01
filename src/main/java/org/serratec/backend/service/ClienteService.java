@@ -122,6 +122,7 @@ public class ClienteService {
         return new ClienteResponseDTO(cliente.get());
     }
 
+    @Transactional
     public String delete(Long id){
         Optional<Cliente> cliente = Optional.ofNullable(clienteRepository.findById(id).orElseThrow(() -> new ClienteException("ID não encontrado.")));
         if (cliente.get().getStatus().equals(false)) {
@@ -129,7 +130,8 @@ public class ClienteService {
         }else {
         	cliente.get().setStatus(false);
         	clienteRepository.save(cliente.get());
+        	mailConfig.delete(cliente.get().getEmail(), "Sua conta foi desativada", cliente.get().toString());
         	return "Cliente desativado!";
-        }
+        }    
     }
 }
